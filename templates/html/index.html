@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="eng">
+{% load static %}
+<head>
+	<meta charset="utf-8">
+	<title>News</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="templates/style.css">
+	<style>
+		*{
+			padding: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+		}
+		#nav{
+			background:transparent!important;
+		}
+    .collapse a {
+      color: white;
+    }
+    header nav a:hover{
+      background-color: orange;
+      display:flex;
+      border-radius: 15px;
+    }
+    select{
+      background-color:#0000;
+    }
+    select:hover{
+        background-color: orange;
+      display:flex;
+      border-radius: 15px;
+    }
+   /* header{
+      width: 100%;
+      height: auto;
+      background:url('https://cdn.pixabay.com/photo/2015/11/07/12/02/business-1031754_960_720.jpg');
+      background-size:100%;
+      background-repeat: no-repeat;
+      background-position:fixed;
+      clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0% 75%, 0 0);
+    }*/
+
+	</style>
+</head>
+<body>
+	<!-- navbar -->
+		
+
+
+
+<header>
+          <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="#"><i class="fas fa-dragon"></i>WwNews.com</a>
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#"><i class="fas fa-home">Home</i></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-users">HAbout-us</i></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-phone">Contact-us</i></a>
+              </li>
+            </ul>
+      <form class="d-flex" action = "next" name = "country" method="GET">
+          <select name = "cont">
+            <option value="{{cont_name}}">{{cont_name}}</option>
+            {% for x in country_name %}
+               <option value="{{x}}">{{x}}</option>
+            {% endfor %}
+          </select>
+  
+          <select name = "cata">
+             <option value="{{cata}}">{{cata}}</option> 
+            {% for x in catagory %}
+              <option value="{{x}}">{{x}}</option>
+            {% endfor %}
+          </select>
+
+        <button class="btn btn-danger" type="submit">Search</button>
+      </form>
+          </div>
+        </nav>
+</header>
+<!-- carousal -->
+<!-- <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="500">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100 h-90" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs5inOPcjVT7X4CMSdhAsrHGqG0Lf0upEr3g&usqp=CAU" alt="First slide">
+    </div>
+
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCVirh3SOkCM0AyzAFMKuBdwwjeSrrOtRlFw&usqp=CAU" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSsDUpQ6zg1EVHRQRvXL_DD38CwKTjiQGcLQ&usqp=CAU" alt="Third slide">
+    </div>
+  </div>
+</div> -->
+	<!-- cards -->
+<div class="aria-controls container-fluid">
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+    {% for item in news %}
+    <div class="col">
+      <div class="card" style="width: 18rem; height: 400px">
+      <img src='{% firstof item.urlToImage "https://3ddd.casa/img/header-prev-01.png" %}' class="card-img-top img-flex" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{% firstof item.author %}</h5>
+      <p class="card-text">{{item.description|slice:50}}...</p>
+    <a href = '{{item.url}}' {{item.url}} class="btn btn-primary" target="_blank">lern</a>
+  </div>
+</div></div>
+{% endfor %}</div></div>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
